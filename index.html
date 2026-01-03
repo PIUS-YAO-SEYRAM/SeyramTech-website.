@@ -1,0 +1,936 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SeyramTech | Professional CCTV Installation, Maintenance & Troubleshooting</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0d4a6b;
+            --secondary: #1a7a9f;
+            --accent: #ff6b35;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: #e55a2b;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            color: var(--accent);
+            font-size: 2.2rem;
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            margin: 0;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(13, 74, 107, 0.85), rgba(13, 74, 107, 0.9)), url('https://images.unsplash.com/photo-1580983224763-538846d98f98?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Services Section */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .service-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .service-content {
+            padding: 25px;
+        }
+
+        .service-content h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--light);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .stat-box i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        .stat-box h3 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+
+        .about-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1584132967334-10e028bd69f7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80') center/cover;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .testimonials .section-title h2 {
+            color: white;
+        }
+
+        .testimonials .section-title h2::after {
+            background: var(--accent);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .testimonial-card p::before,
+        .testimonial-card p::after {
+            content: '"';
+            font-size: 2.5rem;
+            position: absolute;
+            color: var(--accent);
+            opacity: 0.7;
+        }
+
+        .testimonial-card p::before {
+            top: -20px;
+            left: -15px;
+        }
+
+        .testimonial-card p::after {
+            bottom: -40px;
+            right: -15px;
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .client-info img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 2px solid var(--accent);
+        }
+
+        .client-details h4 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .client-details p {
+            margin: 0;
+            opacity: 0.8;
+            font-style: normal;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 15px;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--accent);
+            min-width: 30px;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: 4px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            color: white;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        .footer-col p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.8rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-img {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                flex-direction: column;
+                background: white;
+                width: 80%;
+                height: calc(100vh - 80px);
+                padding: 30px;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                height: auto;
+                padding: 120px 0 80px;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-video"></i>
+                    <h1>SeyramTech</h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Professional CCTV Installation & Maintenance</h2>
+                <p>Protect your property with our expert security solutions. 24/7 monitoring, advanced technology, and certified technicians.</p>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn">Get Free Quote</a>
+                    <a href="#services" class="btn btn-outline">Our Services</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>Comprehensive security solutions for residential and commercial properties</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img" style="background: url('C:/Users/PIUS YAO SEYRAM/Desktop/WEB/SeyramTech Bullet Camera.jpg');"></div>
+                    <div class="service-content">
+
+                        <h3>Residential Installation</h3>
+                        <p>Complete home security systems tailored to your property layout with indoor and outdoor cameras, smart integration, and remote                              monitoring.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img" style="background: url('C:/Users/PIUS YAO SEYRAM/Desktop/WEB/SeyramTech image.jpg');">
+                   </div>
+                    <div class="service-content">
+
+                        <h3>Commercial Solutions</h3>
+                        <p>Enterprise-grade surveillance systems for businesses, retail stores, warehouses, and offices with advanced analytics and access control.</p>
+                    </div>
+
+                </div>
+                <div class="service-card">
+                <div class="service-img" style="background: url('C:/Users/PIUS YAO SEYRAM/Desktop/WEB/Seyram-Tech Maintenance.jpg'
+);"></div>
+                    <div class="service-content">
+
+                        <h3>Maintenance & Support</h3>
+                        <p>Regular system checks, cleaning, software updates, and 24/7 technical support to ensure your security system operates flawlessly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+
+                    <h2>Why Choose SeyramTech?</h2>
+                    <p>With over 5 years of experience in the security industry, SeyramTech has installed and maintained over 1,000 surveillance systems across the country. Our certified technicians use only the latest technology and equipment to ensure your property is protected around the clock.</p>
+                    <p>We understand that every property has unique security needs. That's why we offer customized solutions that fit your specific requirements and budget, without compromising on quality or reliability.</p>
+                    
+                    <div class="about-stats">
+                        <div class="stat-box">
+                            <i class="fas fa-camera"></i>
+                            <h3>1,000+</h3>
+                            <p>Systems Installed</p>
+                        </div>
+                        <div class="stat-box">
+                            <i class="fas fa-users"></i>
+                            <h3>800+</h3>
+                            <p>Satisfied Clients</p>
+                        </div>
+                        <div class="stat-box">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>99.9%</h3>
+                            <p>System Uptime</p>
+                        </div>
+                        <div class="stat-box">
+                            <i class="fas fa-headset"></i>
+                            <h3>24/7</h3>
+                            <p>Support Available</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-img"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Client Testimonials</h2>
+                <p>What our clients say about our services</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>SeyramTech installed a comprehensive security system for our retail store. The installation was quick and professional, and the system has been flawless. We've already caught shoplifters thanks to their cameras!</p>
+                    <div class="client-info">          
+
+                   <img src="C:\Users\PIUS YAO SEYRAM\Desktop\WEB\download (1).jpg" alt="Client">
+
+                        <div class="client-details">
+                            <h4>Kingsford Kumordzi</h4>
+                            <p>Store Owner</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>After a break-in at our home, we contacted SeyramTech for a security solution. They designed a system that covered all our vulnerable points and integrated with our smart home. The peace of mind is worth every penny.</p>
+                    <div class="client-info">
+                        <img src="C:\Users\PIUS YAO SEYRAM\Desktop\WEB\download (1).jpg" alt="Client">
+                        <div class="client-details">
+                            <h4>Williams Senam</h4>
+                            <p>Homeowner</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>We manage a large warehouse complex and needed a robust surveillance system. SeyramTech delivered with high-resolution cameras, remote monitoring, and excellent maintenance service. Highly recommended for commercial properties.</p>
+                    <div class="client-info">
+                        <img src="C:\Users\PIUS YAO SEYRAM\Desktop\WEB\download (1).jpg" alt="Client">
+                        <div class="client-details">
+                            <h4>Honest Lavoe</h4>
+                            <p>Facility Manager</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>Get in touch for a free consultation and quote</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Our Location</h3>
+                            <p>Gulf Street, Accra, Ghana</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h3>Phone Number</h3>
+                            <p>+233 (024) 2555-118</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email Address</h3>
+                            <p>info@SeyramTech.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h3>Working Hours</h3>
+                            <p>Monday-Friday: 8:00 - 19:00
+                           <br>Saturday: 9:00 - 17:00
+                           <br>Sunday: Emergency Only</p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Service Required</label>
+                            <select id="service" required>
+                                <option value="">Select a service</option>
+                                <option value="residential">Residential Installation</option>
+                                <option value="commercial">Commercial Installation</option>
+                                <option value="maintenance">Maintenance & Support</option>
+                                <option value="Troubleshooting">Troubleshooting Services</option>
+                                <option value="consultation">Security Consultation</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" placeholder="Tell us about your security needs..."></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo">
+                        <i class="fas fa-video"></i>
+                        <h1>SeyramTech</h1>
+                    </div>
+                    <p>Your trusted partner for professional CCTV installation, maintenance, and troubleshooting services. We provide top-quality security solutions with 24/7 support.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Residential CCTV</a></li>
+                        <li><a href="#">Commercial Security</a></li>
+                        <li><a href="#">System Maintenance</a></li>
+                        <li><a href="#">Remote Monitoring</a></li>
+                        <li><a href="#">Security Consultation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for security tips and special offers.</p>
+                    <form class="newsletter-form">
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email Address" required>
+                        </div>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 SeyramTech CCTV Solutions. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenu.querySelector('i').classList.toggle('fa-bars');
+            mobileMenu.querySelector('i').classList.toggle('fa-times');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenu.querySelector('i').classList.add('fa-bars');
+                mobileMenu.querySelector('i').classList.remove('fa-times');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! We will contact you shortly.');
+                contactForm.reset();
+            });
+        }
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 2px 15px rgba(0,0,0,0.2)';
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            } else {
+                header.style.boxShadow = '0 2px 15px rgba(0,0,0,0.1)';
+                header.style.background = 'white';
+            }
+        });
+    </script>
+</body>
+</html>
